@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F583996B-0686-4013-8948-EDBC7FBF2727}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ActiveLearning.Repository</RootNamespace>
+    <AssemblyName>ActiveLearning.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\ActiveLearningContext.cs" />
+    <Compile Include="CustomExcepetion\ContentNotFoundException.cs" />
+    <Compile Include="CustomExcepetion\CourseNotFondException.cs" />
+    <Compile Include="Interface\IAdminRepository.cs" />
+    <Compile Include="Interface\IChatRepository.cs" />
+    <Compile Include="Interface\IContentRepository.cs" />
+    <Compile Include="Interface\ICourseRepository.cs" />
+    <Compile Include="Interface\IInstructorRepository.cs" />
+    <Compile Include="Interface\IInstructor_Course_MapRepository.cs" />
+    <Compile Include="Interface\IQuizAnswerRepository.cs" />
+    <Compile Include="Interface\IQuizOptionRepository.cs" />
+    <Compile Include="Interface\IQuizQuestionRepository.cs" />
+    <Compile Include="Interface\Core\IRepository.cs" />
+    <Compile Include="Interface\Core\IRepositoryAsync.cs" />
+    <Compile Include="Interface\IStudentRepository.cs" />
+    <Compile Include="Interface\IStudent_Course_MapRepository.cs" />
+    <Compile Include="Interface\Core\IUnitOfWork.cs" />
+    <Compile Include="Interface\Core\IUnitOfWorkAsync.cs" />
+    <Compile Include="Interface\IUserRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AdminRepository.cs" />
+    <Compile Include="Repository\ChatRepository.cs" />
+    <Compile Include="Repository\ContentRepository.cs" />
+    <Compile Include="Repository\CourseRepository.cs" />
+    <Compile Include="Repository\InstructorRepository.cs" />
+    <Compile Include="Repository\Instructor_Course_MapRepository.cs" />
+    <Compile Include="Repository\QuizAnswerRepository.cs" />
+    <Compile Include="Repository\Core\Repository.cs" />
+    <Compile Include="Repository\QuizOptionRepository.cs" />
+    <Compile Include="Repository\QuizQuestionRepository.cs" />
+    <Compile Include="Repository\StudentRepository.cs" />
+    <Compile Include="Repository\Student_Course_MapRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ActiveLearning.DB\ActiveLearning.DB.csproj">
+      <Project>{796c0bd5-0a31-4ceb-8920-78805c20b907}</Project>
+      <Name>ActiveLearning.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

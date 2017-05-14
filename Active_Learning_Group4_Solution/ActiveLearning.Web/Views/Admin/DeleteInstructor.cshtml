@@ -1,0 +1,46 @@
+﻿@model ActiveLearning.DB.Instructor
+
+@{
+    ViewBag.Title = "Delete Instructor";
+}
+
+<h2>Delete Instructor</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null)
+{
+    <div class="container text-center">
+        <h4 style="margin-top:100px">Confirm to delete ?</h4>
+    </div>
+    <hr />
+    <div class="form-group "style="margin-left:35%">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Qualification)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Qualification)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.User.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User.Username)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group" style="margin-left:45%">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+}

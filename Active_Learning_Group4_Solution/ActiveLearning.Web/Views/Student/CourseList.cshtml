@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ActiveLearning.DB.Course>
+@using ActiveLearning.Business.Common;
+@{
+    ViewBag.Title = "Course List";
+}
+
+<h2>Course List</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table" style="margin-top:100px">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDT)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateDT)
+                </td>
+                <td>
+                    @Html.ActionLink("Chat", "Chat", new { courseSid = item.Sid })
+                    &nbsp; | &nbsp; @Html.ActionLink("Quiz", "Quiz", new { courseSid = item.Sid })
+                    &nbsp; | &nbsp; @Html.ActionLink("Content", "Content", new { courseSid = item.Sid })
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}
+

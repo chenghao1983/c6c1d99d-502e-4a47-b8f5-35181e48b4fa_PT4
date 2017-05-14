@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ActiveLearning.DB.Instructor>
+@using ActiveLearning.Business.Common;
+
+@{
+    ViewBag.Title = "Manage Instructor";
+}
+
+<h2>Manage Instructor</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+<div class="container text-right" style="width:90%">
+    @Html.ActionLink("Create New Instructor", "CreateInstructor")
+</div>
+<br />
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table">
+
+        <tr>
+            <th style="width:50%">
+                @Html.DisplayNameFor(model => model.User.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Username)
+            </th>
+            <th>
+                @Html.Label("IsActivated")
+            </th>
+
+
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.IsActive)
+                </td>
+
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Action<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Edit", "EditInstructor", new { instructorSid = item.Sid }) </li>
+                            <li>@Html.ActionLink("Details", "InstructorDetails", new { instructorSid = item.Sid }) </li>
+                            <li>@Html.ActionLink("Delete", "DeleteInstructor", new { instructorSid = item.Sid }) </li>
+                            <li>@Html.ActionLink(item.User.IsActive ? "Deactivate" : "Activate", item.User.IsActive ? "DeactivateInstructor" : "ActivateInstructor", new { instructorSid = item.Sid })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}

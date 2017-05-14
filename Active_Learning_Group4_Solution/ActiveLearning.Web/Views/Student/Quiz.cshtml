@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ActiveLearning.DB.QuizQuestion>
+@using ActiveLearning.Business.Common;
+@{
+    ViewBag.Title = "Quiz";
+}
+
+<h2>Quiz</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div id="bodyContainer" style="margin-top:100px"></div>
+    <script type="text/x-handlebars" id="index">
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="flip-container text-center col-md-12">
+                        <div {{bindAttr class=":back question.answered:flip answer" }}>
+                            <p class="lead">
+                                {{answer}}
+                            </p>
+                            <p>
+                                <button class="btn btn-info btn-lg next option" {{action "nextQuestion" option}}>Next Question</button>
+                            </p>
+                        </div>
+                        <div {{bindAttr class=":front question.answered:flip" }}>
+                            <p class="lead">
+                                {{question.title}}
+                            </p>
+                            <div class="row text-center">
+                                {{#each option in question.quizOptions}}
+                                <button class="btn btn-info btn-lg option" {{action "sendAnswer" question option}}>{{option.title}}</button>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </script>
+
+    @section Scripts {
+        <script src="@Url.Content("~/Scripts/handlebars.js")"></script>
+        <script src="@Url.Content("~/Scripts/ember-1.0.0.js")"></script>
+        <script>
+            var App = Ember.Application.create({ rootElement: '#bodyContainer' });
+
+            App.Question = Ember.Object.extend({ title: "loading question...", quizOptions: [], answered: false });
+
+            App.IndexController = Ember.ObjectController.extend({
+                question: null,
+                answer: null,
+
+                init: function () {
+                    this._super();
+                    this.nextQuestion();
+                },
+
+                nextQuestion: function () {
+                    var controller = this;
+                    var question = App.Question.create();
+                    this.set('question', question);
+
+                    jQuery.getJSON("/api/QuizQuestion",{'courseSid': @ViewBag.CourseSid}, function (response) {
+                        //alert(JSON.stringify(response));
+                        //alert(response);
+                        question.setProperties(response);
+                    }).fail(function () { question.set('title', "Oops... something went wrong") });
+                    //jQuery.getJSON("/student/Quiz", function (response) {
+                    //    //alert(JSON.stringify(response));
+                    //    question.setProperties(response);
+                    //}).fail(function () { question.set('title', "Oops... something went wrong") });
+                },
+
+                sendAnswer: function (question, option) {
+                    var controller = this;
+
+                    // prevent multiple posts for the same question
+                    jQuery('.front button').attr('disabled', 'disabled');
+
+                    jQuery.post('/api/QuizQuestion', {"CourseSid":option.courseSid, 'QuizQuestionSid': question.sid, 'QuizOptionSid': option.sid }, function (response) {
+                        controller.set('answer', response ? 'correct' : 'incorrect');
+                        controller.set('question.answered', true);
+                    });
+
+                    //jQuery.post('/student/Quiz', { 'QuizQuestionSid': question.sid, 'QuizOptionSid': option.sid }, function (response) {
+                    //    controller.set('answer', response ? 'correct' : 'incorrect');
+                    //    controller.set('question.answered', true);
+                    //});
+                }
+            });
+        </script>
+    }
+}

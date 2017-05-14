@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - PT4 Active Learning</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Active Learning", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", onclick = "javascrip:return false;" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "./")</li>*@
+                </ul>
+                @{
+
+                    string url = Request.Path;
+                    if (url.IndexOf("Admin", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        @Html.Partial("_LoginAdminPartial")
+                    }
+                    else if (url.IndexOf("Instructor", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        @Html.Partial("_LoginInstructorPartial")
+                    }
+                    else if (url.IndexOf("Student", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        @Html.Partial("_LoginStudentPartial")
+                    }
+
+
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content panel-body glyphicon-align-center" style="min-height:800px;">
+        <div class="row">
+            @*<div class="">Welcome !</div>*@
+        </div>
+        @RenderBody()
+        <hr />
+
+    </div>
+    @*<div class="container">
+        <a href="#" class="navbar-nav"  style="font-size:medium;">Back To List</a>
+    </div>*@
+    @if (!String.IsNullOrEmpty(ViewBag.BackURL))
+    {
+        <div class="container">
+            <a href="@ViewBag.BackURL" class="navbar-nav">Back To List</a>          
+        </div>
+    }
+    <br />
+    <footer class="panel-footer" style="text-align:center">
+        <p>&copy; @DateTime.Now.Year - PT4 Active Learning Application</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@using ActiveLearning.DB;
+@using ActiveLearning.Business.Common;
+@model List<Content>
+@{
+    ViewBag.Title = "Content List";
+}
+
+<h2>Content List</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null && Model.Count() > 0)
+{
+    using (Html.BeginForm("Download", "Student", FormMethod.Post))
+    {
+        <table class="table" style="margin-top:100px">
+            <tr>
+                <th>File Name</th>
+                <th>File Type</th>
+                <th>Action</th>
+            </tr>
+
+            @for (var i = 0; i <= Model.Count - 1; i++)
+            {
+                <tr>
+                    <td>
+                        @Model[i].OriginalFileName.ToString()
+                    </td>
+                    <td>
+                        @if (Model[i].Type.Equals(Constants.Content_Type_Video, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            <label class="text-success">Video</label>
+                        }
+                        else if (Model[i].Type.Equals(Constants.Content_Type_File, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            <label class="text-primary">File</label>
+                        }
+                    </td>
+                    <td>
+                        @if (Model[i].Type.Equals(Constants.Content_Type_Video, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            @Html.ActionLink("Watch", "Download", new { courseSid = ViewBag.CourseSid, contentSid = @Model[i].Sid, originalFileName = @Model[i].OriginalFileName }, new { @class = "btn-md" })
+                        }
+                        else if (Model[i].Type.Equals(Constants.Content_Type_File, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            @Html.ActionLink("Download", "Download", new { courseSid = ViewBag.CourseSid, contentSid = @Model[i].Sid, originalFileName = @Model[i].OriginalFileName }, new { @class = "btn-md" })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}

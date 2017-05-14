@@ -1,0 +1,67 @@
+﻿@model ActiveLearning.DB.Student
+
+@{
+    ViewBag.Title = "Student Details";
+}
+
+<h2>Student Details</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null)
+{
+    <div class="container text-center">
+        <h4>Student Detail</h4>
+    </div>
+    <hr />
+        <div class="form-group" style="margin-left:35%">
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserSid)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UserSid)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.FullName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.FullName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.Username)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.Username)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BatchNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BatchNo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.CreateDT)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.CreateDT)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.User.UpdateDT)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.UpdateDT)
+                </dd>
+            </dl>
+        </div>
+}

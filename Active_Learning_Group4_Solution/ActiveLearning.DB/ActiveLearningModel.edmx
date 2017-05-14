@@ -1,0 +1,982 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ActiveLearning.DB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserSid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseSid" Type="int" Nullable="false" />
+          <Property Name="StudentSid" Type="int" />
+          <Property Name="InstructorSid" Type="int" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="DeleteDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseSid" Type="int" Nullable="false" />
+          <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OriginalFileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="DeleteDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="DeleteDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserSid" Type="int" Nullable="false" />
+          <Property Name="Qualification" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instructor_Course_Map">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstructorSid" Type="int" Nullable="false" />
+          <Property Name="CourseSid" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuizAnswer">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuizQuestionSid" Type="int" Nullable="false" />
+          <Property Name="QuizOptionSid" Type="int" Nullable="false" />
+          <Property Name="StudentSid" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="DeleteDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QuizOption">
+          <Key>
+            <PropertyRef Name="Sid" />
+            <PropertyRef Name="QuizQuestionSid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuizQuestionSid" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsCorrect" Type="bit" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="DeleteDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QuizQuestion">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="DeleteDT" Type="datetime" />
+          <Property Name="CourseSid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserSid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_Course_Map">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentSid" Type="int" Nullable="false" />
+          <Property Name="CourseSid" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Role" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="DeleteDT" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Admin_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="UserSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="InstructorSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="StudentSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Course_Map_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Instructor_Course_Map" Type="Self.Instructor_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Instructor_Course_Map">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Course_Map_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+          <End Role="Instructor_Course_Map" Type="Self.Instructor_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Instructor_Course_Map">
+              <PropertyRef Name="InstructorSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="UserSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizAnswer_QuizOption">
+          <End Role="QuizOption" Type="Self.QuizOption" Multiplicity="1" />
+          <End Role="QuizAnswer" Type="Self.QuizAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizOption">
+              <PropertyRef Name="Sid" />
+              <PropertyRef Name="QuizQuestionSid" />
+            </Principal>
+            <Dependent Role="QuizAnswer">
+              <PropertyRef Name="QuizOptionSid" />
+              <PropertyRef Name="QuizQuestionSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizAnswer_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="QuizAnswer" Type="Self.QuizAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="QuizAnswer">
+              <PropertyRef Name="StudentSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizOption_QuizQuestion">
+          <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="1" />
+          <End Role="QuizOption" Type="Self.QuizOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizQuestion">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="QuizOption">
+              <PropertyRef Name="QuizQuestionSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestion_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="QuizQuestion">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_Map_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Student_Course_Map" Type="Self.Student_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Student_Course_Map">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_Map_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student_Course_Map" Type="Self.Student_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Student_Course_Map">
+              <PropertyRef Name="StudentSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="UserSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ActiveLearningDBStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor_Course_Map" EntityType="Self.Instructor_Course_Map" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizAnswer" EntityType="Self.QuizAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizOption" EntityType="Self.QuizOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizQuestion" EntityType="Self.QuizQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Course_Map" EntityType="Self.Student_Course_Map" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Admin_User" Association="Self.FK_Admin_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Course" Association="Self.FK_Chat_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Instructor" Association="Self.FK_Chat_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Student" Association="Self.FK_Chat_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Course" Association="Self.FK_Content_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Course_Map_Course" Association="Self.FK_Instructor_Course_Map_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Instructor_Course_Map" EntitySet="Instructor_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Course_Map_Instructor" Association="Self.FK_Instructor_Course_Map_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Instructor_Course_Map" EntitySet="Instructor_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_User" Association="Self.FK_Instructor_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Instructor" EntitySet="Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizAnswer_QuizOption" Association="Self.FK_QuizAnswer_QuizOption">
+            <End Role="QuizOption" EntitySet="QuizOption" />
+            <End Role="QuizAnswer" EntitySet="QuizAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizAnswer_Student" Association="Self.FK_QuizAnswer_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="QuizAnswer" EntitySet="QuizAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizOption_QuizQuestion" Association="Self.FK_QuizOption_QuizQuestion">
+            <End Role="QuizQuestion" EntitySet="QuizQuestion" />
+            <End Role="QuizOption" EntitySet="QuizOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestion_Course" Association="Self.FK_QuizQuestion_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="QuizQuestion" EntitySet="QuizQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_Map_Course" Association="Self.FK_Student_Course_Map_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Student_Course_Map" EntitySet="Student_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_Map_Student" Association="Self.FK_Student_Course_Map_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Student_Course_Map" EntitySet="Student_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_User" Association="Self.FK_Student_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ActiveLearning.DB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserSid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Admin_User" FromRole="Admin" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseSid" Type="Int32" Nullable="false" />
+          <Property Name="StudentSid" Type="Int32" />
+          <Property Name="InstructorSid" Type="Int32" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Chat_Course" FromRole="Chat" ToRole="Course" />
+          <NavigationProperty Name="Instructor" Relationship="Self.FK_Chat_Instructor" FromRole="Chat" ToRole="Instructor" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Chat_Student" FromRole="Chat" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseSid" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Content_Course" FromRole="Content" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Chats" Relationship="Self.FK_Chat_Course" FromRole="Course" ToRole="Chat" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_Content_Course" FromRole="Course" ToRole="Content" />
+          <NavigationProperty Name="Instructor_Course_Map" Relationship="Self.FK_Instructor_Course_Map_Course" FromRole="Course" ToRole="Instructor_Course_Map" />
+          <NavigationProperty Name="QuizQuestions" Relationship="Self.FK_QuizQuestion_Course" FromRole="Course" ToRole="QuizQuestion" />
+          <NavigationProperty Name="Student_Course_Map" Relationship="Self.FK_Student_Course_Map_Course" FromRole="Course" ToRole="Student_Course_Map" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserSid" Type="Int32" Nullable="false" />
+          <Property Name="Qualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Chats" Relationship="Self.FK_Chat_Instructor" FromRole="Instructor" ToRole="Chat" />
+          <NavigationProperty Name="Instructor_Course_Map" Relationship="Self.FK_Instructor_Course_Map_Instructor" FromRole="Instructor" ToRole="Instructor_Course_Map" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Instructor_User" FromRole="Instructor" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Instructor_Course_Map">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstructorSid" Type="Int32" Nullable="false" />
+          <Property Name="CourseSid" Type="Int32" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Instructor_Course_Map_Course" FromRole="Instructor_Course_Map" ToRole="Course" />
+          <NavigationProperty Name="Instructor" Relationship="Self.FK_Instructor_Course_Map_Instructor" FromRole="Instructor_Course_Map" ToRole="Instructor" />
+        </EntityType>
+        <EntityType Name="QuizAnswer">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuizQuestionSid" Type="Int32" Nullable="false" />
+          <Property Name="QuizOptionSid" Type="Int32" Nullable="false" />
+          <Property Name="StudentSid" Type="Int32" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="QuizOption" Relationship="Self.FK_QuizAnswer_QuizOption" FromRole="QuizAnswer" ToRole="QuizOption" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_QuizAnswer_Student" FromRole="QuizAnswer" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="QuizOption">
+          <Key>
+            <PropertyRef Name="Sid" />
+            <PropertyRef Name="QuizQuestionSid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuizQuestionSid" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="QuizAnswers" Relationship="Self.FK_QuizAnswer_QuizOption" FromRole="QuizOption" ToRole="QuizAnswer" />
+          <NavigationProperty Name="QuizQuestion" Relationship="Self.FK_QuizOption_QuizQuestion" FromRole="QuizOption" ToRole="QuizQuestion" />
+        </EntityType>
+        <EntityType Name="QuizQuestion">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDT" Type="DateTime" Precision="3" />
+          <Property Name="CourseSid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_QuizQuestion_Course" FromRole="QuizQuestion" ToRole="Course" />
+          <NavigationProperty Name="QuizOptions" Relationship="Self.FK_QuizOption_QuizQuestion" FromRole="QuizQuestion" ToRole="QuizOption" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserSid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chats" Relationship="Self.FK_Chat_Student" FromRole="Student" ToRole="Chat" />
+          <NavigationProperty Name="QuizAnswers" Relationship="Self.FK_QuizAnswer_Student" FromRole="Student" ToRole="QuizAnswer" />
+          <NavigationProperty Name="Student_Course_Map" Relationship="Self.FK_Student_Course_Map_Student" FromRole="Student" ToRole="Student_Course_Map" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Student_User" FromRole="Student" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Student_Course_Map">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentSid" Type="Int32" Nullable="false" />
+          <Property Name="CourseSid" Type="Int32" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Student_Course_Map_Course" FromRole="Student_Course_Map" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Course_Map_Student" FromRole="Student_Course_Map" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Sid" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_User" FromRole="User" ToRole="Admin" />
+          <NavigationProperty Name="Instructors" Relationship="Self.FK_Instructor_User" FromRole="User" ToRole="Instructor" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Student_User" FromRole="User" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Admin_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="UserSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="InstructorSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="StudentSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Course_Map_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Instructor_Course_Map" Type="Self.Instructor_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Instructor_Course_Map">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestion_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="QuizQuestion">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_Map_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Student_Course_Map" Type="Self.Student_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Student_Course_Map">
+              <PropertyRef Name="CourseSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Course_Map_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+          <End Role="Instructor_Course_Map" Type="Self.Instructor_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Instructor_Course_Map">
+              <PropertyRef Name="InstructorSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="UserSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizAnswer_QuizOption">
+          <End Role="QuizOption" Type="Self.QuizOption" Multiplicity="1" />
+          <End Role="QuizAnswer" Type="Self.QuizAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizOption">
+              <PropertyRef Name="Sid" />
+              <PropertyRef Name="QuizQuestionSid" />
+            </Principal>
+            <Dependent Role="QuizAnswer">
+              <PropertyRef Name="QuizOptionSid" />
+              <PropertyRef Name="QuizQuestionSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizAnswer_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="QuizAnswer" Type="Self.QuizAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="QuizAnswer">
+              <PropertyRef Name="StudentSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizOption_QuizQuestion">
+          <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="1" />
+          <End Role="QuizOption" Type="Self.QuizOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizQuestion">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="QuizOption">
+              <PropertyRef Name="QuizQuestionSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_Map_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student_Course_Map" Type="Self.Student_Course_Map" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Student_Course_Map">
+              <PropertyRef Name="StudentSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="UserSid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Chats" EntityType="Self.Chat" />
+          <EntitySet Name="Contents" EntityType="Self.Content" />
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+          <EntitySet Name="Instructor_Course_Map" EntityType="Self.Instructor_Course_Map" />
+          <EntitySet Name="QuizAnswers" EntityType="Self.QuizAnswer" />
+          <EntitySet Name="QuizOptions" EntityType="Self.QuizOption" />
+          <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestion" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Student_Course_Map" EntityType="Self.Student_Course_Map" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Admin_User" Association="Self.FK_Admin_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Course" Association="Self.FK_Chat_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Instructor" Association="Self.FK_Chat_Instructor">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Student" Association="Self.FK_Chat_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Course" Association="Self.FK_Content_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Content" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Course_Map_Course" Association="Self.FK_Instructor_Course_Map_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Instructor_Course_Map" EntitySet="Instructor_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestion_Course" Association="Self.FK_QuizQuestion_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="QuizQuestion" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_Map_Course" Association="Self.FK_Student_Course_Map_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Student_Course_Map" EntitySet="Student_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Course_Map_Instructor" Association="Self.FK_Instructor_Course_Map_Instructor">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="Instructor_Course_Map" EntitySet="Instructor_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_User" Association="Self.FK_Instructor_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizAnswer_QuizOption" Association="Self.FK_QuizAnswer_QuizOption">
+            <End Role="QuizOption" EntitySet="QuizOptions" />
+            <End Role="QuizAnswer" EntitySet="QuizAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizAnswer_Student" Association="Self.FK_QuizAnswer_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="QuizAnswer" EntitySet="QuizAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizOption_QuizQuestion" Association="Self.FK_QuizOption_QuizQuestion">
+            <End Role="QuizQuestion" EntitySet="QuizQuestions" />
+            <End Role="QuizOption" EntitySet="QuizOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_Map_Student" Association="Self.FK_Student_Course_Map_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Student_Course_Map" EntitySet="Student_Course_Map" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_User" Association="Self.FK_Student_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ActiveLearningDBStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="UserSid" ColumnName="UserSid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chats">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="CourseSid" ColumnName="CourseSid" />
+                <ScalarProperty Name="StudentSid" ColumnName="StudentSid" />
+                <ScalarProperty Name="InstructorSid" ColumnName="InstructorSid" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="DeleteDT" ColumnName="DeleteDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="CourseSid" ColumnName="CourseSid" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="DeleteDT" ColumnName="DeleteDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="DeleteDT" ColumnName="DeleteDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="UserSid" ColumnName="UserSid" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructor_Course_Map">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Instructor_Course_Map">
+              <MappingFragment StoreEntitySet="Instructor_Course_Map">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="InstructorSid" ColumnName="InstructorSid" />
+                <ScalarProperty Name="CourseSid" ColumnName="CourseSid" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizAnswers">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.QuizAnswer">
+              <MappingFragment StoreEntitySet="QuizAnswer">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="QuizQuestionSid" ColumnName="QuizQuestionSid" />
+                <ScalarProperty Name="QuizOptionSid" ColumnName="QuizOptionSid" />
+                <ScalarProperty Name="StudentSid" ColumnName="StudentSid" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="DeleteDT" ColumnName="DeleteDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizOptions">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.QuizOption">
+              <MappingFragment StoreEntitySet="QuizOption">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="QuizQuestionSid" ColumnName="QuizQuestionSid" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="DeleteDT" ColumnName="DeleteDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizQuestions">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.QuizQuestion">
+              <MappingFragment StoreEntitySet="QuizQuestion">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="DeleteDT" ColumnName="DeleteDT" />
+                <ScalarProperty Name="CourseSid" ColumnName="CourseSid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="UserSid" ColumnName="UserSid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Course_Map">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.Student_Course_Map">
+              <MappingFragment StoreEntitySet="Student_Course_Map">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="StudentSid" ColumnName="StudentSid" />
+                <ScalarProperty Name="CourseSid" ColumnName="CourseSid" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ActiveLearning.DB.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="DeleteDT" ColumnName="DeleteDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

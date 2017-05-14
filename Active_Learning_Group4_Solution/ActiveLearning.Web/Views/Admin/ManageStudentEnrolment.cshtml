@@ -1,0 +1,95 @@
+﻿@model IList<ActiveLearning.DB.Student>
+@using ActiveLearning.DB;
+@using ActiveLearning.Business.Common;
+@{
+    ViewBag.Title = "Manage Student Course Enrolment";
+}
+
+<h2>Manage Student Course Enrolment</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null && Model.Count() > 0)
+{
+    using (Html.BeginForm("UpdateStudentEnrolment", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <table class="table">
+            <tr>
+                <th>
+                    <input type="checkbox" id="checkBoxAll" />
+                </th>
+                <th style="width:40%">
+                    Full Name   @*@Html.DisplayNameFor(model => model.BatchNo)*@
+                </th>
+                <th>
+                    User Name   @*@Html.DisplayNameFor(model => model.User.Username)*@
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Batch No
+                </th>
+            </tr>
+
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    @*@{if (TempData.Peek("CheckedStudent") != null)
+                            {
+                                var checkedStu = TempData.Peek("CheckedStudent")as List<int>;
+                                //if (item.UserSid.Equals(checkedStu[0]))
+                                if(checkedStu.Contains(item.UserSid))
+                                {
+                                    <input type="checkbox" class="checkbox" value="@item.UserSid" name="studentId" checked />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" class="checkbox" value="@item.UserSid" name="studentId" />
+                                }
+                            }
+                        }*@
+                    <td>
+                        @Html.CheckBoxFor(x => x[i].HasEnrolled, new { @class = "checkbox" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].User.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].User.Username)
+                    </td>
+                    <td>
+                        @if (Model[i].User.IsActive)
+                        {
+                            @Html.Label("Active")
+                        }
+                        else
+                        {
+                            @Html.Label("Inactive")
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].BatchNo)
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 text-right">
+                <input type="submit" value="Save" class="btn btn-primary" style="width:100px" />
+            </div>
+        </div>
+    }
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked"))
+                $('.checkbox').prop('checked', true);
+            else
+                $('.checkbox').prop('checked', false);
+        });
+    });
+</script>

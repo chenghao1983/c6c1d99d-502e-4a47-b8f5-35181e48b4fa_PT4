@@ -1,0 +1,55 @@
+﻿@model ActiveLearning.DB.QuizQuestion
+
+@{
+    ViewBag.Title = "Delete Quiz Question";
+}
+
+<h2>Delete Quiz Question</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null)
+{
+    <div class="container text-center">
+        <h4 style="margin-top:100px">Confirm to delete ?</h4>
+    </div>
+    <hr />
+    <div class="form-group table" style="margin-left:35%">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDT)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreateDT)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDT)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDT)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group" style="margin-left:45%">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+
+            </div>
+        }
+    </div>
+}

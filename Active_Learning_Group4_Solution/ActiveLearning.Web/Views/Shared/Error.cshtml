@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hr style="margin-top:200px" />
+    <hgroup class="text-center">
+        @*<h1>Error: @ViewBag.Message </h1>*@
+
+        <h2>An error occurred while processing your request</h2>
+        @if (@ViewBag.Message != null)
+        {
+            <h2>Reason: @ViewBag.Message</h2>
+        }
+    </hgroup>
+    <div class="text-center" style="margin-top:5%">
+        <a href="~/home/" class="btn btn-primary btn-lg active">Home</a>
+    </div>
+</body>
+</html>

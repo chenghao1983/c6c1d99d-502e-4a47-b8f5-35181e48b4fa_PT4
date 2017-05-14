@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d42de952612b462599547a37dc43fc1f" Name="Diagram1">
+        <EntityTypeShape EntityType="ActiveLearning.DB.Admin" Width="1.5" PointX="3.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.Chat" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.Content" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.Course" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.Instructor" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.Instructor_Course_Map" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.QuizAnswer" Width="1.5" PointX="7.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.QuizOption" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.QuizQuestion" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.Student" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.Student_Course_Map" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveLearning.DB.User" Width="1.5" PointX="1.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Admin_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Chat_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Chat_Instructor" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Chat_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Content_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Instructor_Course_Map_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_QuizQuestion_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Student_Course_Map_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Instructor_Course_Map_Instructor" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Instructor_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_QuizAnswer_QuizOption" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_QuizAnswer_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_QuizOption_QuizQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Student_Course_Map_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveLearning.DB.FK_Student_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

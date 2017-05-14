@@ -1,0 +1,50 @@
+﻿
+@using Microsoft.AspNet.Identity
+@using ActiveLearning.Web.Controllers
+@using ActiveLearning.DB
+
+
+@{
+
+
+    using (Html.BeginForm("LogOff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+
+        var tempUser = TempData.Peek(BaseController.UserSessionParam) as User;
+        var userName = string.Empty;
+        if(tempUser != null)
+        {
+            userName = tempUser.FullName;
+        }
+
+        @*@html.antiforgerytoken();*@
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + userName, "", null, new { onclick = "javascript:return false;" })
+            </li>
+            <li>@Html.ActionLink("Change Password", "ChangePassword")</li>
+            <li>@Html.ActionLink("Home", "Index", "Admin")</li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/Admin/ManageCourse">Manage Course</a></li>
+                    <li><a href="/Admin/ManageStudent">Manage Student</a></li>
+                    <li><a href="/Admin/ManageInstructor">Manage Instructor</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+        </ul>
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+

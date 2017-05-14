@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ActiveLearning.DB.Course>
+@using ActiveLearning.Business.Common;
+@{
+    ViewBag.Title = "CourseList";
+}
+
+<h2>Course List</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table" style="margin-top:100px">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDT)
+            </th>
+            <th>
+                Action
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDT)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Details", "CourseDetails", new { id = item.Sid }) |
+                        @Html.ActionLink("Manage Quiz", "ManageQuiz", new { id = item.Sid })*@
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Action<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Chat", "Chat", new { courseSid = item.Sid })</li>
+                            <li>@Html.ActionLink("Manage Quiz", "ManageQuiz", new { courseSid = item.Sid })</li>
+                            <li>@Html.ActionLink("Manage Content", "ManageContent", new { courseSid = item.Sid })</li>
+                            <li>@Html.ActionLink("View Quiz Statistics", "QuizStatistics", new { courseSid = item.Sid })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}

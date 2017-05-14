@@ -1,0 +1,43 @@
+﻿@model ActiveLearning.DB.QuizQuestion
+
+@{
+    ViewBag.Title = "Create Quiz Question";
+}
+
+<h2>Create Quiz Question</h2>
+
+@Html.Partial("_MessageBoxPartial")
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal" style="margin-top:100px">
+        <h4>Quiz Question</h4>
+        <hr />
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Course.CourseName, "CourseName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Course.CourseName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Course.CourseName, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin-left:25%">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group" style="margin-left:45%">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
