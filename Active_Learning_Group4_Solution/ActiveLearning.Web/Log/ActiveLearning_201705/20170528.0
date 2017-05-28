@@ -1,0 +1,167 @@
+2017-05-28 16:41:45,656 The connection string 'Active_Learning_Group4' in the application's configuration file does not contain the required providerName attribute."
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.CreateObjectContextFromConnectionModel()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:41:52,744 The connection string 'Active_Learning_Group4' in the application's configuration file does not contain the required providerName attribute."
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.CreateObjectContextFromConnectionModel()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:43:05,606 Format of the initialization string does not conform to specification starting at index 138.
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.GetKeyValuePair(String connectionString, Int32 currentPosition, StringBuilder buffer, String& keyname, String& keyvalue)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.ParseInternal(IDictionary`2 parsetable, String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions..ctor(String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.Entity.Core.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.CreateObjectContextFromConnectionModel()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:43:14,945 Format of the initialization string does not conform to specification starting at index 138.
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.GetKeyValuePair(String connectionString, Int32 currentPosition, StringBuilder buffer, String& keyname, String& keyvalue)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.ParseInternal(IDictionary`2 parsetable, String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions..ctor(String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.Entity.Core.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.CreateObjectContextFromConnectionModel()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:43:18,376 Format of the initialization string does not conform to specification starting at index 138.
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.GetKeyValuePair(String connectionString, Int32 currentPosition, StringBuilder buffer, String& keyname, String& keyvalue)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.ParseInternal(IDictionary`2 parsetable, String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions..ctor(String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.Entity.Core.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.CreateObjectContextFromConnectionModel()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:44:45,366 Keyword not supported: 'server'.
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.ParseInternal(IDictionary`2 parsetable, String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions..ctor(String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.Entity.Core.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.get_ProviderName()
+   at System.Data.Entity.Internal.LazyInternalContext.get_ProviderName()
+   at System.Data.Entity.Internal.DefaultModelCacheKeyFactory.Create(DbContext context)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:44:49,432 Keyword not supported: 'server'.
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.ParseInternal(IDictionary`2 parsetable, String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions..ctor(String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.Entity.Core.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.get_ProviderName()
+   at System.Data.Entity.Internal.LazyInternalContext.get_ProviderName()
+   at System.Data.Entity.Internal.DefaultModelCacheKeyFactory.Create(DbContext context)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:45:45,096 Keyword not supported: 'data source'.
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.ParseInternal(IDictionary`2 parsetable, String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions..ctor(String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.Entity.Core.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.get_ProviderName()
+   at System.Data.Entity.Internal.LazyInternalContext.get_ProviderName()
+   at System.Data.Entity.Internal.DefaultModelCacheKeyFactory.Create(DbContext context)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:45:49,074 Keyword not supported: 'data source'.
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions.ParseInternal(IDictionary`2 parsetable, String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.Internal.DbConnectionOptions..ctor(String connectionString, IList`1 validKeywords)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.Entity.Core.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Entity.Internal.LazyInternalConnection.InitializeFromConnectionStringSetting(ConnectionStringSettings appConfigConnection)
+   at System.Data.Entity.Internal.LazyInternalConnection.TryInitializeFromAppConfig(String name, AppConfig config)
+   at System.Data.Entity.Internal.LazyInternalConnection.Initialize()
+   at System.Data.Entity.Internal.LazyInternalConnection.get_ProviderName()
+   at System.Data.Entity.Internal.LazyInternalContext.get_ProviderName()
+   at System.Data.Entity.Internal.DefaultModelCacheKeyFactory.Create(DbContext context)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ActiveLearning.Repository.Repository.Core.Repository`1.Find(Expression`1 predicate) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Repository\Repository\Core\Repository.cs:line 43
+   at ActiveLearning.Business.Implementation.UserManager.IsAuthenticated(String userName, String pass, String& messge) in D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearning.Business\Implementation\UserManager.cs:line 111
+---------------------------------------------------------------------------------------------------------------
+2017-05-28 16:47:35,634 User: Student1 logged in
+---------------------------------------------------------------------------------------------------------------
