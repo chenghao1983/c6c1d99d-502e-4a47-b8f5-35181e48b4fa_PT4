@@ -16,18 +16,39 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/20/2016 20:39:18</publishTime>
     </File>
     <File Include="bin/ActiveLearning.Business.dll">
-      <publishTime>05/20/2017 17:09:40</publishTime>
+      <publishTime>05/28/2017 16:22:52</publishTime>
+    </File>
+    <File Include="bin/ActiveLearning.Business.pdb">
+      <publishTime>05/28/2017 16:22:52</publishTime>
     </File>
     <File Include="bin/ActiveLearning.DB.dll">
-      <publishTime>05/20/2017 17:00:32</publishTime>
+      <publishTime>05/28/2017 16:22:49</publishTime>
+    </File>
+    <File Include="bin/ActiveLearning.DB.dll.config">
+      <publishTime>05/20/2017 16:55:59</publishTime>
+    </File>
+    <File Include="bin/ActiveLearning.DB.pdb">
+      <publishTime>05/28/2017 16:22:49</publishTime>
     </File>
     <File Include="bin/ActiveLearning.Repository.dll">
-      <publishTime>05/20/2017 17:00:34</publishTime>
+      <publishTime>05/28/2017 16:22:51</publishTime>
+    </File>
+    <File Include="bin/ActiveLearning.Repository.dll.config">
+      <publishTime>05/07/2016 09:29:15</publishTime>
+    </File>
+    <File Include="bin/ActiveLearning.Repository.pdb">
+      <publishTime>05/28/2017 16:22:51</publishTime>
     </File>
     <File Include="bin/ActiveLearning.Web.dll">
-      <publishTime>05/20/2017 17:10:59</publishTime>
+      <publishTime>05/28/2017 16:52:02</publishTime>
+    </File>
+    <File Include="bin/ActiveLearning.Web.pdb">
+      <publishTime>05/28/2017 16:52:02</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>05/07/2016 09:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
       <publishTime>05/07/2016 09:29:20</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
@@ -111,6 +132,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/log4net.dll">
       <publishTime>05/07/2016 09:29:22</publishTime>
     </File>
+    <File Include="bin/log4net.pdb">
+      <publishTime>05/07/2016 09:29:22</publishTime>
+    </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>05/07/2016 09:29:20</publishTime>
     </File>
@@ -159,8 +183,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Microsoft.WindowsAzure.Storage.dll">
       <publishTime>05/20/2017 15:57:42</publishTime>
     </File>
+    <File Include="bin/Microsoft.WindowsAzure.Storage.pdb">
+      <publishTime>05/20/2017 15:57:42</publishTime>
+    </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>05/07/2016 09:29:17</publishTime>
+      <publishTime>05/28/2017 16:49:25</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>05/07/2016 09:29:19</publishTime>
@@ -212,6 +239,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/ru/System.Spatial.resources.dll">
       <publishTime>05/20/2017 15:57:40</publishTime>
+    </File>
+    <File Include="bin/SendGrid.dll">
+      <publishTime>05/28/2017 16:49:25</publishTime>
+    </File>
+    <File Include="bin/SendGrid.pdb">
+      <publishTime>05/28/2017 16:49:25</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>05/07/2016 09:29:21</publishTime>
@@ -325,7 +358,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2016 09:29:15</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>05/20/2017 16:55:49</publishTime>
+      <publishTime>05/28/2017 16:49:23</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>05/07/2016 09:29:13</publishTime>
@@ -547,13 +580,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2016 09:29:14</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>05/07/2016 09:29:14</publishTime>
+      <publishTime>05/28/2017 17:07:43</publishTime>
     </File>
     <File Include="Views/Shared/Video.cshtml">
       <publishTime>05/07/2016 09:29:14</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/07/2016 09:29:14</publishTime>
+      <publishTime>05/28/2017 17:07:30</publishTime>
     </File>
     <File Include="Views/Shared/_LoginAdminPartial.cshtml">
       <publishTime>05/07/2016 09:29:14</publishTime>
@@ -586,13 +619,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/16/2016 22:59:35</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>05/07/2016 09:29:14</publishTime>
+      <publishTime>05/28/2017 17:21:59</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>05/07/2016 09:29:14</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/20/2017 17:11:02</publishTime>
+      <publishTime>05/28/2017 17:32:54</publishTime>
     </File>
   </ItemGroup>
 </Project>
