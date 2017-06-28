@@ -1235,6 +1235,24 @@ GO
 SET IDENTITY_INSERT [dbo].[Chat] OFF
 GO
 
+-- =======================================================
+-- Create Stored Procedure Template for Azure SQL Database
+-- =======================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE GetCourseRegistrations
+
+AS
+BEGIN
+
+   select Sid, courseName, (select count(1) from Student_Course_Map M where M.CourseSid = C.Sid) as Registration from course C
+
+END
+GO
 
 
 --------------------------Others---------------------- 
