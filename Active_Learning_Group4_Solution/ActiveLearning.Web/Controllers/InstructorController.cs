@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ActiveLearning.Business.Implementation;
 using ActiveLearning.Web.Filter;
 using System.Threading.Tasks;
+using ActiveLearning.Business.Common;
 
 namespace ActiveLearning.Web.Controllers
 {
@@ -27,7 +28,7 @@ namespace ActiveLearning.Web.Controllers
         }
         #endregion
 
-       
+
 
         #region Course
         [OutputCache(Duration = Cache_Length)]
@@ -101,7 +102,7 @@ namespace ActiveLearning.Web.Controllers
             {
                 return RedirectToError(message);
             }
-
+            ViewBag.CourseSid = courseSid;
             var items = new List<Content>();
             using (var contentManager = new ContentManager())
             {
@@ -117,7 +118,6 @@ namespace ActiveLearning.Web.Controllers
                     return View(items);
                 }
             }
-            ViewBag.CourseSid = courseSid;
             GetErrorAneMessage();
             SetBackURL("courselist");
             return View(items);
@@ -202,8 +202,9 @@ namespace ActiveLearning.Web.Controllers
             //{
             //    return RedirectToError(Business.Common.Constants.ValueIsEmpty("UrlReferrer"));
             //}
-            string filepath;
+            string filepath = string.Empty;
             string fileType;
+            FileResult file = null;
             using (var contentManager = new ContentManager())
             {
                 var content = contentManager.GetContentByContentSid(contentSid, out message);
@@ -213,10 +214,35 @@ namespace ActiveLearning.Web.Controllers
                     return RedirectToAction("ManageContent", new { courseSid = courseSid });
                     //return RedirectToError(message);
                 }
-                filepath = content.Path + content.FileName;
+
                 fileType = content.Type;
+                if (Util.IsUploadLocationFileSystem())
+                {
+                    filepath = content.Path + content.FileName;
+                    file = File(filepath, System.Net.Mime.MediaTypeNames.Application.Octet, originalFileName);
+                }
+                else
+                {
+                    var storage = Util.OpenCloudStorageConnection();
+                    var container = Util.OpenCloudStorageContainer(storage);
+                    filepath = container.Uri + "/" + content.FileName;
+                    try
+                    {
+                        using (var client = new System.Net.WebClient())
+                        {
+                            byte[] contents = client.DownloadData(filepath);
+                            file = File(contents, System.Net.Mime.MediaTypeNames.Application.Octet, originalFileName);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Util.ExceptionLog(ex);
+                        return RedirectToError(null);
+                    }
+                }
             }
-            var file = File(filepath, System.Net.Mime.MediaTypeNames.Application.Octet, originalFileName);
+
             if (file == null)
             {
                 SetTempDataError(ActiveLearning.Business.Common.Constants.ValueNotFound(ActiveLearning.Business.Common.Constants.File));
@@ -233,7 +259,7 @@ namespace ActiveLearning.Web.Controllers
             {
                 return file;
             }
-            return RedirectToError(null); ;
+            return RedirectToError(null);
         }
         #endregion
 

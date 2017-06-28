@@ -11,6 +11,7 @@ using ActiveLearning.Business.Common;
 using System.Web;
 using System.IO;
 using System.Web.Mvc;
+using ActiveLearning.Business.ViewModel;
 
 namespace ActiveLearning.Business.Implementation
 {
@@ -121,20 +122,39 @@ namespace ActiveLearning.Business.Implementation
             }
 
             string GUIDFileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
             var uploadFolder = Util.GetUploadFolderFromConfig();
 
-            try
+            // upload to file system
+            if (Util.IsUploadLocationFileSystem())
             {
-                var uploadPath = Path.Combine(controller.Server.MapPath(uploadFolder), GUIDFileName);
-                file.SaveAs(uploadPath);
-            }
-            catch (Exception ex)
-            {
-                ExceptionLog(ex);
-                message = Constants.OperationFailedDuringSavingValue(Constants.File);
-                return null;
-            }
 
+                try
+                {
+                    var uploadPath = Path.Combine(controller.Server.MapPath(uploadFolder), GUIDFileName);
+                    file.SaveAs(uploadPath);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionLog(ex);
+                    message = Constants.OperationFailedDuringSavingValue(Constants.File);
+                    return null;
+                }
+            }
+            // upload to blob
+            else
+            {
+                try
+                {
+                    Util.UploadToAzureStorage(file.InputStream, GUIDFileName, file.ContentType);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionLog(ex);
+                    message = Constants.OperationFailedDuringSavingValue(Constants.File);
+                    return null;
+                }
+            }
             try
             {
                 Content content = new Content();
@@ -190,8 +210,19 @@ namespace ActiveLearning.Business.Implementation
                 using (var unitOfWork = new UnitOfWork(new ActiveLearningContext()))
                 {
                     var content = unitOfWork.Contents.Get(contentSid);
-                    string path = controller.Server.MapPath(content.Path + content.FileName);
-                    File.Delete(path);
+
+                    // File System
+                    if (Util.IsUploadLocationFileSystem())
+                    {
+                        string path = controller.Server.MapPath(content.Path + content.FileName);
+                        File.Delete(path);
+                    }
+                    // Azure Blob
+                    else
+                    {
+                        Util.DeleteFromAzureStorage(content.FileName);
+                    }
+
                     content.DeleteDT = DateTime.Now;
                     unitOfWork.Complete();
                 }

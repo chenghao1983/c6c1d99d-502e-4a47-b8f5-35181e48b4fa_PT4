@@ -9,6 +9,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using ActiveLearning.Business.ViewModel;
 using ActiveLearning.Business.Implementation;
+using System.Configuration;
 
 namespace ActiveLearning.Business.Common
 {
@@ -110,7 +111,18 @@ namespace ActiveLearning.Business.Common
         #endregion
 
         #region Upload
-
+        public static bool IsUploadLocationFileSystem()
+        {
+            return GetUploadLocationFromConfig() == "1";
+        }
+        public static string GetUploadLocationFromConfig()
+        {
+            // 1 for File System, 2 for Blob
+            string defaulUploadLocation = "1";
+            string key = "UploadLocation";
+            string[] settings = System.Web.Configuration.WebConfigurationManager.AppSettings.GetValues(key);
+            return settings == null || settings.Length == 0 ? defaulUploadLocation : settings[0];
+        }
         public static string GetAllowedFileExtensionFromConfig()
         {
             string defaultExtensions = ".mp4,.ppt,.pptx,.txt,.doc,.docx,.pdf,.xls,.xlsx";
@@ -155,32 +167,32 @@ namespace ActiveLearning.Business.Common
             return settings == null || settings.Length == 0 ? defaultFolder : settings[0];
         }
 
-        public static bool IsFileExtensionAllowed(string fileName, out string message)
-        {
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                message = "File name is empty";
-                return false;
-            }
-            // define default allowed extension
-            var defaultAllowedExtension = "jpg,png,bmp,gif";
-            // retrieve allowed extension from app config
-            var allowedExtension = GetAllowedFileExtensionFromConfig();
-            if (!String.IsNullOrEmpty(allowedExtension))
-            {
-                allowedExtension = defaultAllowedExtension;
-            }
-            var extension = GetFileExtension(fileName);
+        //public static bool IsFileExtensionAllowed(string fileName, out string message)
+        //{
+        //    if (string.IsNullOrWhiteSpace(fileName))
+        //    {
+        //        message = "File name is empty";
+        //        return false;
+        //    }
+        //    // define default allowed extension
+        //    var defaultAllowedExtension = "jpg,png,bmp,gif";
+        //    // retrieve allowed extension from app config
+        //    var allowedExtension = GetAllowedFileExtensionFromConfig();
+        //    if (!String.IsNullOrEmpty(allowedExtension))
+        //    {
+        //        allowedExtension = defaultAllowedExtension;
+        //    }
+        //    var extension = GetFileExtension(fileName);
 
-            if (!allowedExtension.Contains(extension))
-            {
-                message = extension + " is not allowed";
-                return false;
-            }
+        //    if (!allowedExtension.Contains(extension))
+        //    {
+        //        message = extension + " is not allowed";
+        //        return false;
+        //    }
 
-            message = string.Empty;
-            return true;
-        }
+        //    message = string.Empty;
+        //    return true;
+        //}
 
         public static string GetFileExtension(string fileName)
         {
@@ -218,64 +230,107 @@ namespace ActiveLearning.Business.Common
 
         #region Azure Storage
 
-        public async static Task<UploadResult> UploadToAzureStorage(Stream stream, string newFileName)
+        public  static void UploadToAzureStorage(Stream stream, string newFileName, string contentType)
         {
-            var uploadResult = new UploadResult();
-            uploadResult.success = true;
-            uploadResult.message = string.Empty;
+            //var uploadResult = new UploadResult();
+            //uploadResult.success = true;
+            //uploadResult.message = string.Empty;
 
             CloudStorageAccount storageAccount;
             try
             {
-                storageAccount = await OpenCloudStorageConnection();
+                //storageAccount = await OpenCloudStorageConnection();
+                storageAccount =  OpenCloudStorageConnection();
             }
             catch (Exception ex)
             {
-                uploadResult.success = false;
-                uploadResult.message = ex.Message;
-                return uploadResult;
+                //uploadResult.success = false;
+                //uploadResult.message = ex.Message;
+                //return uploadResult;
+                throw ex;
             }
 
             CloudBlobContainer container;
             try
             {
-                container = await OpenCloudStorageContainer(storageAccount);
+                //container = await OpenCloudStorageContainer(storageAccount);
+                container = OpenCloudStorageContainer(storageAccount);
             }
             catch (Exception ex)
             {
-                uploadResult.success = false;
-                uploadResult.message = ex.Message;
-                return uploadResult;
+                //uploadResult.success = false;
+                //uploadResult.message = ex.Message;
+                //return uploadResult;
+                throw ex;
             }
 
             try
             {
                 CloudBlockBlob blob = container.GetBlockBlobReference(newFileName);
-                blob.Properties.ContentType = "image/jpeg";
-                await blob.UploadFromStreamAsync(stream);
+                blob.Properties.ContentType = contentType;// "image/jpeg";
+                //blob.SetProperties();
+                //await blob.UploadFromStreamAsync(stream);
+                blob.UploadFromStream(stream);
             }
             catch (StorageException sx)
             {
-                ExceptionLog(sx);
-               // LogUtil.WriteLog(sx.StackTrace);
+                //ExceptionLog(sx);
+                // LogUtil.WriteLog(sx.StackTrace);
                 throw new Exception(sx.Message);
             }
             catch (Exception ex)
             {
-                ExceptionLog(ex);
+                //ExceptionLog(ex);
                 //LogUtil.WriteLog(ex.StackTrace);
                 throw ex;
             }
 
-            return uploadResult;
+            //return uploadResult;
         }
 
-        public async static Task<CloudStorageAccount> OpenCloudStorageConnection()
+        public static void DeleteFromAzureStorage(string newFileName)
         {
-            var storagetConnectionString = System.Web.Configuration.WebConfigurationManager.AppSettings["StorageConnectionString"]; //ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString;
+            CloudStorageAccount storageAccount;
+            try
+            {
+                storageAccount = OpenCloudStorageConnection();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            CloudBlobContainer container;
+            try
+            {
+                container = OpenCloudStorageContainer(storageAccount);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            try
+            {
+                CloudBlockBlob blob = container.GetBlockBlobReference(newFileName);
+                blob.DeleteIfExists();
+            }
+            catch (StorageException sx)
+            {
+                throw new Exception(sx.Message);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public  static CloudStorageAccount OpenCloudStorageConnection()
+        {
+            var storagetConnectionString = ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString; // System.Web.Configuration.WebConfigurationManager.AppSettings["StorageConnectionString"];
             if (string.IsNullOrWhiteSpace(storagetConnectionString))
             {
-                ExceptionLog("Storage connection string is missing in web config");
+                //ExceptionLog("Storage connection string is missing in web config");
                 //LogUtil.WriteLog("Storage connection string is missing in web config");
                 throw new Exception("Storage connection string is missing in web config");
             }
@@ -288,43 +343,43 @@ namespace ActiveLearning.Business.Common
             }
             catch (FormatException fe)
             {
-                ExceptionLog(fe);
+                //ExceptionLog(fe);
                 //LogUtil.WriteLog(fe.StackTrace);
                 throw new Exception(fe.Message);
             }
             catch (StorageException se)
             {
-                ExceptionLog(se);
+                //ExceptionLog(se);
                 //LogUtil.WriteLog(se.StackTrace);
                 throw new Exception(se.Message);
             }
             catch (ArgumentException ae)
             {
-                ExceptionLog(ae);
+                //ExceptionLog(ae);
                 //LogUtil.WriteLog(ae.StackTrace);
                 throw new Exception(ae.Message);
             }
             catch (Exception ex)
             {
-                ExceptionLog(ex);
+                //ExceptionLog(ex);
                 //LogUtil.WriteLog(ex.StackTrace);
                 throw ex;
             }
 
             if (storageAccount == null)
             {
-                ExceptionLog("Storaget account is not available");
+                //ExceptionLog("Storaget account is not available");
                 //LogUtil.WriteLog("Storaget account is not available");
                 throw new Exception("Storaget account is not available");
             }
 
             return storageAccount;
         }
-        public async static Task<CloudBlobContainer> OpenCloudStorageContainer(CloudStorageAccount storageAccount)
+        public static CloudBlobContainer OpenCloudStorageContainer(CloudStorageAccount storageAccount)
         {
             if (storageAccount == null)
             {
-                ExceptionLog("Storaget account is invalid");
+                //ExceptionLog("Storaget account is invalid");
                 //LogUtil.WriteLog("Storaget account is invalid");
                 throw new Exception("Storaget account is invalid");
             }
@@ -332,7 +387,7 @@ namespace ActiveLearning.Business.Common
             var storageContainer = System.Web.Configuration.WebConfigurationManager.AppSettings["StorageContainerName"]; //ConfigurationManager.AppSettings["StorageContainerName"];
             if (string.IsNullOrWhiteSpace(storageContainer))
             {
-                ExceptionLog("Storage container name is missing in web config");
+                //ExceptionLog("Storage container name is missing in web config");
                 //LogUtil.WriteLog("Storage container name is missing in web config");
                 throw new Exception("Storage container name is missing in web config");
             }
@@ -345,20 +400,20 @@ namespace ActiveLearning.Business.Common
             }
             catch (StorageException sx)
             {
-                ExceptionLog(sx);
+                //ExceptionLog(sx);
                 //LogUtil.WriteLog(sx.StackTrace);
                 throw new Exception(sx.Message);
             }
             catch (Exception ex)
             {
-                ExceptionLog(ex);
+                //ExceptionLog(ex);
                 //LogUtil.WriteLog(ex.StackTrace);
                 throw ex;
             }
 
             if (container == null)
             {
-                ExceptionLog("Storaget container is not available");
+                //ExceptionLog("Storaget container is not available");
                 //LogUtil.WriteLog("Storaget container is not available");
                 throw new Exception("Storaget container is not available");
             }
