@@ -502,7 +502,7 @@ GO
 
 SET IDENTITY_INSERT [dbo].[User] ON 
 GO
-INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActive], [CreateDT], [UpdateDT], [DeleteDT], [Role], [PasswordSalt]) VALUES (1, N'Admin1', N'/OdzAoQWZRpJ1JZa+gpRYPannNShlOb8J', 'Super Admin', 'joechenghao@gmail.com', 1, CAST(N'2016-04-13 23:15:17.527' AS DateTime), NULL, NULL, N'A',N'ZB/sYHfiuxnSFd/ZoMZMfNqAW+MpQu5x ')
+INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActive], [CreateDT], [UpdateDT], [DeleteDT], [Role], [PasswordSalt]) VALUES (1, N'Admin1', N't5bahHgyfjMDi7jcwE7zz+CUTW6E8VZw', 'Admin 1', 'joechenghao@gmail.com', 1, CAST(N'2016-04-13 23:15:17.527' AS DateTime), NULL, NULL, N'A',N'C0xyFiz5b3ZacMTRPwKleI0eFaSy0x8C ')
 GO
 INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActive], [CreateDT], [UpdateDT], [DeleteDT], [Role], [PasswordSalt]) VALUES (2, N'Instructor1', N't5bahHgyfjMDi7jcwE7zz+CUTW6E8VZw', 'Kent White', 'joechenghao@gmail.com', 1, CAST(N'2016-04-13 23:17:34.010' AS DateTime), NULL, NULL, N'I',N'C0xyFiz5b3ZacMTRPwKleI0eFaSy0x8C ')
 GO
@@ -544,6 +544,14 @@ INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActi
 GO
 INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActive], [CreateDT], [UpdateDT], [DeleteDT], [Role], [PasswordSalt]) VALUES (21, N'Student10', N'czIthJ583ZfkcszEIEfEK+q2pWDq3ofB', 'Valencia Demeter', 'joechenghao@gmail.com', 0, CAST(N'2016-04-13 23:21:00.933' AS DateTime), NULL, NULL, N'S',N'JolFZ40Wq1Hz3Jfuo4NhIt+BQL06TmFZ ')
 GO
+INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActive], [CreateDT], [UpdateDT], [DeleteDT], [Role], [PasswordSalt]) VALUES (22, N'Admin2', N't5bahHgyfjMDi7jcwE7zz+CUTW6E8VZw', 'Admin 2', 'joechenghao@gmail.com', 0, CAST(N'2016-04-13 23:21:00.933' AS DateTime), NULL, NULL, N'S',N'C0xyFiz5b3ZacMTRPwKleI0eFaSy0x8C ')
+GO
+INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActive], [CreateDT], [UpdateDT], [DeleteDT], [Role], [PasswordSalt]) VALUES (23, N'Admin3', N't5bahHgyfjMDi7jcwE7zz+CUTW6E8VZw', 'Admin 3', 'joechenghao@gmail.com', 0, CAST(N'2016-04-13 23:21:00.933' AS DateTime), NULL, NULL, N'S',N'C0xyFiz5b3ZacMTRPwKleI0eFaSy0x8C ')
+GO
+INSERT [dbo].[User] ([Sid], [Username], [Password], [FullName], [Email], [IsActive], [CreateDT], [UpdateDT], [DeleteDT], [Role], [PasswordSalt]) VALUES (24, N'Admin4', N't5bahHgyfjMDi7jcwE7zz+CUTW6E8VZw', 'Admin 4', 'joechenghao@gmail.com', 0, CAST(N'2016-04-13 23:21:00.933' AS DateTime), NULL, NULL, N'S',N'C0xyFiz5b3ZacMTRPwKleI0eFaSy0x8C ')
+GO
+
+
 SET IDENTITY_INSERT [dbo].[User] OFF
 GO
 
@@ -554,6 +562,13 @@ GO
 
 INSERT [dbo].[Admin]([Sid],[UserSid]) VALUES (1,1)
 GO
+INSERT [dbo].[Admin]([Sid],[UserSid]) VALUES (2,22)
+GO
+INSERT [dbo].[Admin]([Sid],[UserSid]) VALUES (3,23)
+GO
+INSERT [dbo].[Admin]([Sid],[UserSid]) VALUES (4,24)
+GO
+
 
 SET IDENTITY_INSERT [dbo].[Admin] OFF
 GO
