@@ -96,6 +96,13 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Admin]') AND type in (N'U'))
 DROP TABLE [dbo].[Admin]
 GO
+
+drop procedure if exists GetCourseRegistrations
+go
+
+drop view if exists GetCourseRegistrationsView
+go
+
 /****** Object:  Table [dbo].[Admin]    Script Date: 26/04/2016 23:04:07 ******/
 SET ANSI_NULLS ON
 GO
@@ -1253,6 +1260,22 @@ BEGIN
 
 END
 GO
+
+CREATE VIEW [dbo].[GetCourseRegistrationsView] as
+
+select convert(varchar, dateadd(hour,8, getdate())) as [Time],
+N'<table style="width:500px;text-align:left">' +
+N'<tr><th>Course Name</th>
+<th>Registration</th>
+</tr>' +
+CAST ( (
+select td= courseName,'', td =  (select count(1)  from Student_Course_Map M where M.CourseSid = C.Sid) from course C
+FOR XML PATH('tr'), TYPE
+) AS NVARCHAR(MAX) ) +
+N'</table>' as [Registration]
+   
+GO
+
 
 
 --------------------------Others---------------------- 
