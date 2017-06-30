@@ -1,0 +1,7 @@
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\bin\Release\LoginTest.webtest
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\bin\Release\ActiveLearningPerformanceTest.dll
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\bin\Release\ActiveLearningPerformanceTest.pdb
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\bin\Release\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\obj\Release\ActiveLearningPerformanceTest.csprojResolveAssemblyReference.cache
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\obj\Release\ActiveLearningPerformanceTest.dll
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\obj\Release\ActiveLearningPerformanceTest.pdb

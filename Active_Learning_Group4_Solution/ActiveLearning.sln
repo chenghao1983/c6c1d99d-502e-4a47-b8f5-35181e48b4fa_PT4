@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveLearning.DB", "ActiveLearning.DB\ActiveLearning.DB.csproj", "{796C0BD5-0A31-4CEB-8920-78805C20B907}"
 EndProject
@@ -12,6 +12,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveLearning.Business", "ActiveLearning.Business\ActiveLearning.Business.csproj", "{ACE1B618-44AC-41F7-B9AB-73C783E149D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendGridSample", "SendGridSample\SendGridSample.csproj", "{4EC6E2D9-D022-4FED-B577-C53E0AD481A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveLearningPerformanceTest", "ActiveLearningPerformanceTest\ActiveLearningPerformanceTest.csproj", "{52DA0596-C30E-472F-837B-D3922CFDCE49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B8CE6A0D-B143-403E-832E-DBA6B5BB1548}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +46,10 @@ Global
 		{4EC6E2D9-D022-4FED-B577-C53E0AD481A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC6E2D9-D022-4FED-B577-C53E0AD481A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EC6E2D9-D022-4FED-B577-C53E0AD481A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DA0596-C30E-472F-837B-D3922CFDCE49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DA0596-C30E-472F-837B-D3922CFDCE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DA0596-C30E-472F-837B-D3922CFDCE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DA0596-C30E-472F-837B-D3922CFDCE49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
