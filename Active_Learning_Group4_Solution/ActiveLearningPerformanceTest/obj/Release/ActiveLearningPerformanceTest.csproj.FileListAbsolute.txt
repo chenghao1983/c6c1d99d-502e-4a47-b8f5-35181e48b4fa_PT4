@@ -5,3 +5,4 @@ D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerforman
 D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\obj\Release\ActiveLearningPerformanceTest.csprojResolveAssemblyReference.cache
 D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\obj\Release\ActiveLearningPerformanceTest.dll
 D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\obj\Release\ActiveLearningPerformanceTest.pdb
+D:\Workspace\Cloud\trunk\Active_Learning_Group4_Solution\ActiveLearningPerformanceTest\bin\Release\LoginLoadTest.loadtest
